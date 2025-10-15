@@ -1,0 +1,38 @@
+{
+    "Attacker": {
+        "Attacking": {
+            "kd": 0.0,
+            "kp": 0.1,
+            "pwm": 0.0
+        },
+        "Seeking": {
+            "kd": 0.0,
+            "kp": 0.0,
+            "pwm": 0.0
+        }
+    },
+    "Defender": {
+        "Attacking": {
+            "kd": 0.0,
+            "kp": 0.0,
+            "pwm": 0.0
+        },
+        "Seeking": {
+            "kd": 0.0,
+            "kp": 0.0,
+            "pwm": 0.0
+        }
+    },
+    "Goleiro": {
+        "MoveBackward": {
+            "kd": 0.0,
+            "kp": 0.0,
+            "pwm": 0.0
+        },
+        "MoveFoward": {
+            "kd": 0.0,
+            "kp": 0.0,
+            "pwm": 0.0
+        }
+    }
+}
