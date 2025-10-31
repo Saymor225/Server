@@ -1,18 +1,18 @@
 {
     "Attacker": {
         "Attacking": {
-            "kd": 0.0,
-            "kp": 0.1,
-            "pwm": 0.0
+            "kd": 40.0,
+            "kp": 50.0,
+            "pwm": 80.0
         },
         "Seeking": {
-            "kd": 0.0,
-            "kp": 0.0,
-            "pwm": 0.0
+            "kd": 40.0,
+            "kp": 20.0,
+            "pwm": 60.0
         }
     },
     "Defender": {
-        "Attacking": {
+        "Defending": {
             "kd": 0.0,
             "kp": 0.0,
             "pwm": 0.0
@@ -23,16 +23,16 @@
             "pwm": 0.0
         }
     },
-    "Goleiro": {
-        "MoveBackward": {
-            "kd": 0.0,
-            "kp": 0.0,
-            "pwm": 0.0
+    "Goalkeeper": {
+        "MoveBack": {
+            "kd": 50.0,
+            "kp": 90.0,
+            "pwm": 50.0
         },
         "MoveFoward": {
-            "kd": 0.0,
-            "kp": 0.0,
-            "pwm": 0.0
+            "kd": 50.0,
+            "kp": 30.0,
+            "pwm": 20.0
         }
     }
 }

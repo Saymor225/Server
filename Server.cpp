@@ -15,16 +15,13 @@ using json = nlohmann::json;
 
 const int PORT = 8888; 
 const int BUFFER_SIZE = 4096;
-const std::string STORAGE_FILENAME = "calibrations.json"; // Arquivo mestre de armazenamento
+const std::string STORAGE_FILENAME = "calibrations.json"; 
 
-// ------------------------------------------------------------------
-// Função para carregar o JSON existente do disco
-// ------------------------------------------------------------------
+
 json loadExistingData() {
     std::ifstream infile(STORAGE_FILENAME);
     if (infile.is_open()) {
         try {
-            // Tenta ler e parsear o JSON do arquivo
             json data = json::parse(infile);
             infile.close();
             return data;
@@ -33,13 +30,10 @@ json loadExistingData() {
             infile.close();
         }
     }
-    // Retorna um objeto JSON vazio se o arquivo não existir ou for inválido
+
     return json::object();
 }
 
-// ------------------------------------------------------------------
-// Função para salvar o objeto JSON completo no disco
-// ------------------------------------------------------------------
 void saveConsolidatedData(const json& consolidatedData) {
     std::ofstream outfile(STORAGE_FILENAME);
 
@@ -48,37 +42,35 @@ void saveConsolidatedData(const json& consolidatedData) {
         return;
     }
 
-    // Escreve o objeto JSON no arquivo com indentação de 4 espaços para fácil leitura
+    
     outfile << consolidatedData.dump(4);
     outfile.close();
 
     std::cout << "SUCESSO: Dados consolidados salvos em " << STORAGE_FILENAME << std::endl;
 }
 
-// ------------------------------------------------------------------
-// Manipulador principal de pacotes UDP
-// ------------------------------------------------------------------
+
 void handleUdpPacket(const std::string& json_string) {
     try {
-        // 1. Tenta fazer o parsing da string JSON
+        
         json incomingData = json::parse(json_string);
         
         std::cout << "JSON PARSEADO com sucesso. Atualizando dados existentes..." << std::endl;
 
-        // 2. Carrega o arquivo JSON de calibração existente
+        
         json consolidatedData = loadExistingData();
 
-        // 3. Itera sobre os dados recebidos (deve ter apenas uma chave raiz: 'atacante', 'defender', etc.)
+        
         for (auto const& [key, value] : incomingData.items()) {
             std::string vertente = key; 
             
             if (value.is_object()) {
                 std::cout << "Vertente atualizada: '" << vertente << "'" << std::endl;
                 
-                // 4. Substitui/Atualiza a vertente específica no objeto consolidado
+                
                 consolidatedData[vertente] = value;
                 
-                // 5. Salva o objeto JSON consolidado de volta no disco
+                
                 saveConsolidatedData(consolidatedData);
                 return; 
             }
@@ -140,14 +132,12 @@ int main() {
         );
 
         if (n == SOCKET_ERROR) {
-            // Ignora erros comuns de interrupção
             continue;
         }
 
         buffer[n] = '\0';
         std::string json_string(buffer); 
 
-        // Chama o manipulador para processar o JSON e salvar
         handleUdpPacket(json_string);
     }
 
