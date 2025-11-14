@@ -3,11 +3,9 @@
 #include <string>
 #include <cstring>
 
-// Bibliotecas Winsock para Windows
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-// Biblioteca de parsing JSON
 #include "json.hpp" 
 using json = nlohmann::json;
 
